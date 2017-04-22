@@ -9,10 +9,6 @@ import android.view.View;
 
 import com.example.leandro.countryapp.R;
 
-/**
- * Created by leandro on 25/03/17.
- */
-
 public class SimpleDividerRecyclerViewDecorator extends RecyclerView.ItemDecoration {
 
     private Drawable mDivider;

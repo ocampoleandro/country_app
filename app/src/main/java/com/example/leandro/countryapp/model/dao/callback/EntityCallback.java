@@ -1,10 +1,11 @@
 package com.example.leandro.countryapp.model.dao.callback;
 
 /**
- * Created by leandro on 25/03/17.
+ * Returns the model information as a single entity.
  */
 
 public interface EntityCallback<T> {
     void onSuccess(T data);
+
     void onError();
 }

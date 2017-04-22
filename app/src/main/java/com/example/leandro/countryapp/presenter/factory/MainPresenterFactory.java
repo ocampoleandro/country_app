@@ -1,10 +1,14 @@
 package com.example.leandro.countryapp.presenter.factory;
 
-import com.example.leandro.countryapp.presenter.MainPresenter;
+import android.support.annotation.Nullable;
 
-/**
- * Created by leandro on 25/03/17.
- */
+import com.example.leandro.countryapp.presenter.ListCountryPresenter;
+import com.example.leandro.countryapp.ui.provider.ParamsProvider;
 
-public interface MainPresenterFactory extends PresenterFactory<MainPresenter> {
+public class MainPresenterFactory implements PresenterFactory<ListCountryPresenter> {
+
+    @Override
+    public ListCountryPresenter create(@Nullable ParamsProvider bundleProvider) {
+        return new ListCountryPresenter(bundleProvider);
+    }
 }

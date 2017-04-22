@@ -1,16 +1,19 @@
 package com.example.leandro.countryapp.configuration.injection;
 
-import com.example.leandro.countryapp.presenter.impl.MainPresenterImpl;
+import com.example.leandro.countryapp.presenter.ListCountryPresenter;
+import com.example.leandro.countryapp.service.CountryLocalUpdateService;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
 /**
- * Created by leandro on 25/03/17.
+ * Inject the dependencies needed in each object.
  */
 @Singleton
-@Component(modules = {DAOModule.class, CountryAPIModule.class})
+@Component(modules = {DAOModule.class})
 public interface DAOComponent {
-    void inject(MainPresenterImpl mainPresenter);
+    void inject(ListCountryPresenter listCountryPresenter);
+
+    void inject(CountryLocalUpdateService countryLocalUpdateService);
 }

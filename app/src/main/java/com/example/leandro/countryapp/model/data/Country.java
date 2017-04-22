@@ -1,20 +1,34 @@
 package com.example.leandro.countryapp.model.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.parceler.Parcel;
 
-/**
- * Created by leandro on 25/03/17.
- */
+@SuppressWarnings("WeakerAccess")
 @Parcel(Parcel.Serialization.BEAN)
-public class Country {
+public class Country extends BaseEntity {
 
     public static final String REGION_AMERICAS = "Americas";
 
     private String name;
     private String capital;
     private int population;
-    private int[] latLong;
+    @SerializedName("latlng")
+    private double[] latLong;
+    @SerializedName("flag")
     private String flagUrl;
+
+    public Country() {
+
+    }
+
+    public Country(String name, String capital, int population, double[] latLong, String flagUrl) {
+        this.name = name;
+        this.capital = capital;
+        this.population = population;
+        this.latLong = latLong;
+        this.flagUrl = flagUrl;
+    }
 
     public String getName() {
         return name;
@@ -40,19 +54,19 @@ public class Country {
         this.population = population;
     }
 
-    public int[] getLatLong() {
-        return latLong;
-    }
-
-    public void setLatLong(int[] latLong) {
-        this.latLong = latLong;
-    }
-
     public String getFlagUrl() {
         return flagUrl;
     }
 
     public void setFlagUrl(String flagUrl) {
         this.flagUrl = flagUrl;
+    }
+
+    public double[] getLatLong() {
+        return latLong;
+    }
+
+    public void setLatLong(double[] latLong) {
+        this.latLong = latLong;
     }
 }

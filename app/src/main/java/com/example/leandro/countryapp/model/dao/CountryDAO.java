@@ -4,7 +4,7 @@ import com.example.leandro.countryapp.model.dao.callback.ListCallback;
 import com.example.leandro.countryapp.model.data.Country;
 
 /**
- * Created by leandro on 25/03/17.
+ * Gives access to countries from different sources such as NET and Database.
  */
 
 public interface CountryDAO {

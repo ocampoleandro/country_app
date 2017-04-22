@@ -1,7 +1,7 @@
 package com.example.leandro.countryapp.model.dao;
 
 /**
- * Created by leandro on 02/04/17.
+ * Gives the capability of cancelling a request if it is not needed anymore.
  */
 
 public interface RequestData {

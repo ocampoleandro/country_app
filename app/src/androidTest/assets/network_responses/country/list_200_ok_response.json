@@ -1,0 +1,72 @@
+[
+  {
+    "flag": "https://restcountries.eu/data/aia.svg",
+    "name": "Anguilla",
+    "capital": "The Valley",
+    "population": 13452,
+    "latlng": [
+      18.25,
+      -63.16666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/atg.svg",
+    "name": "Antigua and Barbuda",
+    "capital": "Saint John's",
+    "population": 86295,
+    "latlng": [
+      17.05,
+      -61.8
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/arg.svg",
+    "name": "Argentina",
+    "capital": "Buenos Aires",
+    "population": 43590400,
+    "latlng": [
+      -34,
+      -64
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/abw.svg",
+    "name": "Aruba",
+    "capital": "Oranjestad",
+    "population": 107394,
+    "latlng": [
+      12.5,
+      -69.96666666
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/bhs.svg",
+    "name": "Bahamas",
+    "capital": "Nassau",
+    "population": 378040,
+    "latlng": [
+      24.25,
+      -76
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/brb.svg",
+    "name": "Barbados",
+    "capital": "Bridgetown",
+    "population": 285000,
+    "latlng": [
+      13.16666666,
+      -59.53333333
+    ]
+  },
+  {
+    "flag": "https://restcountries.eu/data/blz.svg",
+    "name": "Belize",
+    "capital": "Belmopan",
+    "population": 370300,
+    "latlng": [
+      17.25,
+      -88.75
+    ]
+  }
+]

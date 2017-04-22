@@ -11,20 +11,20 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Created by locampo on 3/31/17.
+ * Provides mocks for each dependency.
  */
 @Module
 public class PresenterFactoryTestModule {
 
-  @Singleton
-  @Provides
-  MainPresenterFactory provideMainPresenterFactory(){
-    return Mockito.mock(MainPresenterFactory.class);
-  }
+    @Singleton
+    @Provides
+    MainPresenterFactory provideMainPresenterFactory() {
+        return Mockito.mock(MainPresenterFactory.class);
+    }
 
     @Singleton
     @Provides
     DetailCountryPresenterFactory provideDetailCountryPresenterFactory() {
         return Mockito.mock(DetailCountryPresenterFactory.class);
-  }
+    }
 }

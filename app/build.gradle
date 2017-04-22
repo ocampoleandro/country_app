@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -9,7 +10,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.example.leandro.countryapp.EspressoTestRunner"
     }
     buildTypes {
         release {
@@ -20,8 +21,8 @@ android {
 }
 
 android.applicationVariants.all {
-  def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
-  it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
+    def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
+    it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
 }
 
 ext {
@@ -35,22 +36,42 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile "org.mockito:mockito-core:2.7.20"
-    testCompile "org.robolectric:robolectric:3.3.2"
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+        // Necessary to avoid version conflicts
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'design'
+        exclude module: 'recyclerview-v7'
+    }
+    androidTestCompile('com.android.support.test:runner:0.5', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0', {
+        exclude group: 'com.squareup.okio', module: 'okio'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    })
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
     compile "com.android.support:support-v4:${supportLibVersion}"
     compile "com.android.support:design:${supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
-    annotationProcessor 'org.parceler:parceler:1.1.5'
-    compile 'org.parceler:parceler-api:1.1.5'
     compile "com.squareup.retrofit2:retrofit:${retrofitLibVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitLibVersion}"
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "com.google.dagger:dagger:${daggerLibVersion}"
     testCompile "com.google.dagger:dagger:${daggerLibVersion}"
+    androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerLibVersion}"
     testAnnotationProcessor "com.google.dagger:dagger-compiler:${daggerLibVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${daggerLibVersion}"
-
+    compile 'org.parceler:parceler-api:1.1.5'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.uphyca:stetho_realm:2.0.0'
+    compile 'com.facebook.stetho:stetho:1.4.2'
+    testCompile 'org.mockito:mockito-core:2.7.20'
+    testCompile 'org.robolectric:robolectric:3.3.2'
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.squareup.okhttp3:mockwebserver:3.6.0'
+    annotationProcessor 'org.parceler:parceler:1.1.5'
 }

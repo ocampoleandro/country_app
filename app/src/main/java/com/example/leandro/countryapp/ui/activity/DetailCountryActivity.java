@@ -15,12 +15,9 @@ import com.example.leandro.countryapp.view.DetailCountryView;
 
 import javax.inject.Inject;
 
-/**
- * Created by leandro on 01/04/17.
- */
+public class DetailCountryActivity extends BaseActivity<DetailCountryPresenter> implements DetailCountryView {
 
-public class DetailCountryActivity extends BaseActivity<DetailCountryPresenter>
-        implements DetailCountryView<DetailCountryPresenter> {
+    public static final String COUNTRY_PARAM = DetailCountryPresenter.COUNTRY_PARAM;
 
     @Inject
     DetailCountryPresenterFactory presenterFactory;
@@ -36,7 +33,7 @@ public class DetailCountryActivity extends BaseActivity<DetailCountryPresenter>
         TextView tvCapital = (TextView) findViewById(R.id.tv_capital);
         tvCapital.setText(country.getCapital());
         TextView tvPopulation = (TextView) findViewById(R.id.tv_population);
-        tvPopulation.setText(country.getPopulation());
+        tvPopulation.setText(String.valueOf(country.getPopulation()));
     }
 
     @NonNull

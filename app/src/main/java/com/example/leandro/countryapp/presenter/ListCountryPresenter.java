@@ -1,26 +1,19 @@
-package com.example.leandro.countryapp.presenter.impl;
-
-import android.os.Bundle;
+package com.example.leandro.countryapp.presenter;
 
 import com.example.leandro.countryapp.CountryApplication;
 import com.example.leandro.countryapp.model.dao.CountryDAO;
 import com.example.leandro.countryapp.model.dao.RequestData;
 import com.example.leandro.countryapp.model.dao.callback.ListCallback;
 import com.example.leandro.countryapp.model.data.Country;
-import com.example.leandro.countryapp.presenter.MainPresenter;
-import com.example.leandro.countryapp.view.MainView;
-
-import org.parceler.Parcels;
+import com.example.leandro.countryapp.ui.adapter.ClickItemListener;
+import com.example.leandro.countryapp.ui.provider.ParamsProvider;
+import com.example.leandro.countryapp.view.ListCountryView;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-/**
- * Created by leandro on 19/03/17.
- */
-
-public class MainPresenterImpl extends BasePresenter<MainView> implements MainPresenter {
+public class ListCountryPresenter extends BasePresenter<ListCountryView> implements ClickItemListener<Country> {
 
     private static final String LIST_COUNTRY_PARAM = "LIST_COUNTRY_PARAM";
     private static final String REGION_PARAM = "REGION_PARAM";
@@ -34,22 +27,19 @@ public class MainPresenterImpl extends BasePresenter<MainView> implements MainPr
     //last region passed to list countries
     private String region;
 
-    public MainPresenterImpl(Bundle savedInstanceState) {
-        if(savedInstanceState != null){
-            countries = Parcels.unwrap(savedInstanceState.getParcelable(LIST_COUNTRY_PARAM));
-            region = savedInstanceState.getString(REGION_PARAM);
-        }
+    public ListCountryPresenter(ParamsProvider bundleProvider) {
+        countries = bundleProvider.getParcelable(LIST_COUNTRY_PARAM);
+        region = bundleProvider.getString(REGION_PARAM);
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(LIST_COUNTRY_PARAM, Parcels.wrap(countries));
-        outState.putString(REGION_PARAM, region);
+    public void onSaveInstanceState(ParamsProvider bundleProvider) {
+        bundleProvider.putParcelable(LIST_COUNTRY_PARAM, countries);
+        bundleProvider.putString(REGION_PARAM, region);
 
         if (requestCountries != null) requestCountries.cancelRequest();
     }
 
-    @Override
     public void onCountriesRequested(String region) {
         if (region.equals(this.region) && countries != null) {
             view.deliverCountries(countries);
@@ -58,9 +48,10 @@ public class MainPresenterImpl extends BasePresenter<MainView> implements MainPr
         this.region = region;
         requestCountries = countryDAO.getCountriesByRegion(region, new ListCallback<Country>() {
             @Override
-            public void onSuccess(List<Country> countries) {
+            public void onSuccess(List<Country> countries, boolean localData) {
                 requestCountries = null;
-                MainPresenterImpl.this.countries = countries;
+                ListCountryPresenter.this.countries = countries;
+                if (!localData) view.updateLocalModel(countries);
                 view.deliverCountries(countries);
             }
 
@@ -75,5 +66,10 @@ public class MainPresenterImpl extends BasePresenter<MainView> implements MainPr
     @Override
     protected void initInject() {
         CountryApplication.getInstance().getDaoComponent().inject(this);
+    }
+
+    @Override
+    public void onClickItem(Country item) {
+        view.launchCountryDetail(item);
     }
 }

@@ -3,14 +3,19 @@ package com.example.leandro.countryapp;
 import com.example.leandro.countryapp.configuration.injection.DaggerPresenterFactoryTestComponent;
 
 /**
- * Created by locampo on 3/31/17.
+ * {@link android.app.Application} class for testing purpose.
  */
-
 public class CountryTestApplication extends CountryApplication {
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    presenterFactoryComponent = DaggerPresenterFactoryTestComponent.create();
-  }
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        //override the factory component in order to inject the mocks instead of real implementations
+        presenterFactoryComponent = DaggerPresenterFactoryTestComponent.create();
+    }
+
+    @Override
+    protected boolean isTestEnvironment() {
+        return true;
+    }
 }

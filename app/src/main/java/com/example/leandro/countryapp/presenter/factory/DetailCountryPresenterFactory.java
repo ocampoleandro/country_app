@@ -1,10 +1,14 @@
 package com.example.leandro.countryapp.presenter.factory;
 
+import android.support.annotation.Nullable;
+
 import com.example.leandro.countryapp.presenter.DetailCountryPresenter;
+import com.example.leandro.countryapp.ui.provider.ParamsProvider;
 
-/**
- * Created by leandro on 01/04/17.
- */
+public class DetailCountryPresenterFactory implements PresenterFactory<DetailCountryPresenter> {
 
-public interface DetailCountryPresenterFactory extends PresenterFactory<DetailCountryPresenter> {
+    @Override
+    public DetailCountryPresenter create(@Nullable ParamsProvider bundleProvider) {
+        return new DetailCountryPresenter(bundleProvider);
+    }
 }
