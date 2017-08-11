@@ -15,7 +15,7 @@ The idea is to give a template that includes
 ### How do I get set up? ###
 
 Import the project using Android Studio. 
-Follow the instructions on [Robolectric](http://robolectric.org/getting-started/) to run the unit tests using Roboelectric if you are using Linux or Mac.
+Check this issue: https://github.com/robolectric/robolectric/issues/2949 and then follow the instructions on [Robolectric](http://robolectric.org/getting-started/) to run the unit tests using Robolectric if you are using Linux or Mac.
 
 ### Who do I talk to? ###
 
